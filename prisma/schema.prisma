@@ -14,11 +14,11 @@ model User {
   id       Int                  @id @default(sequence()) 
   userName String   
   password String 
-  posts Post[]
+  posts Post[] 
 }
 
 model Post {
-  id Int @id @default(sequence())
+  id Int @id @default(sequence())  
   author User @relation(fields: [authorId], references: [id])  
   authorId Int 
 }
