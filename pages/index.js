@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import { PrismaClient } from '@prisma/client';
+import styles from '../styles/Home.module.css';  
+import { PrismaClient } from '@prisma/client';  
 
 const prisma = new PrismaClient(); 
 
