@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import { PrismaClient } from '@prisma/client';   
 import { useState } from 'react';
 import axios from 'axios';
-
+import PostForm from '../components/PostForm'; 
 
 const prisma = new PrismaClient(); 
 
@@ -14,24 +14,25 @@ export default function Home({user}) {
 
   
   
-  console.log(user[0].posts)  
+  console.log(user)  
 
-  const [posts, updatePosts] = useState(user[0].posts) 
+  
 
-  const deletePost = (id) => {
-    console.log(id)
+
+  const deletePost = (id, e) => { 
+    console.log(e.target.parentElement)  
+    e.target.parentElement.className = 'gone'
     //update ui 
-    // updatePosts()
-    // console.log(posts) 
+    
     //make crud operation to db  
-    axios.post('/api/posts/delete', {id: id})
+    axios.post('/api/posts/delete', {id: id})  
 
   }
 
   return (
     <div className={styles.container}> 
-      {user.map( x => (<div className={styles.card}><h2>{x.userName}</h2><h4>Post Id's: {x.posts.map(post => <><p>{post.id}</p><button onClick={() => deletePost(post.id)} className={styles.button}>delete</button></>)}</h4></div>))} 
-      
+      {user.map( x => (<div className={styles.card}><h2>{x.userName}</h2><h4>Post Id's: {x.posts.map(post => <div className='none'><p>{post.id}</p><button onClick={(e) => deletePost(post.id, e)} className={styles.button}>delete</button></div>)}</h4></div>))} 
+      <PostForm authors={user}></PostForm>
     </div>  
   )
 }
