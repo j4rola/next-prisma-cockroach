@@ -29,9 +29,11 @@ export default function Home({user}) {
 
   }
 
+  
+
   return (
     <div className={styles.container}> 
-      {user.map( x => (<div className={styles.card}><h2>{x.userName}</h2><h4>Post Id's: {x.posts.map(post => <div className='none'><p>{post.id}</p><button onClick={(e) => deletePost(post.id, e)} className={styles.button}>delete</button></div>)}</h4></div>))} 
+      {user.map( x => (<div className={styles.card}><h2>{x.userName}</h2><h4>Post Id's: {x.posts.map(post => <div className='none'><p>{post.id}</p><p>{post.body}</p><button onClick={(e) => deletePost(post.id, e)} className={styles.button}>delete</button></div>)}</h4></div>))} 
       <PostForm authors={user}></PostForm>
     </div>  
   )
